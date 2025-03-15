@@ -1,6 +1,7 @@
-Thanks for downloading this template!
+This is my resume deployed on kubernetes cluster.
 
-Template Name: iPortfolio
-Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+I have built home lab. This has 1 master node and 1 workeer node
+
+Resume is built with HTML, CSS and JS language.
+
+I have used Docker, Dockerhub and ArgoCD to deploy the resume
