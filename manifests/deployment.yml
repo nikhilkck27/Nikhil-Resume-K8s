@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: resume-app
-        image: nikhilck/resume-app-nginx:3.0
+        image: nikhil398/resume-app:6.0
         ports:
         - containerPort: 80
 
@@ -36,29 +36,28 @@ spec:
   type: ClusterIP
 
 ---
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: resume-ingress
+  name: nikhilchavan-ingress
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod  
-    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure 
+    kubernetes.io/ingress.class: "traefik"  # Correct for Traefik
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   tls:
-  - hosts:
-    - nikhilchavan.info
-    secretName: nikhilchavan-info-tls 
+    - hosts:
+        - nikhilchavan.info
+      secretName: nikhilchavan-tls  # Matches the TLS Secret name
   rules:
-  - host: nikhilchavan.info
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: resume-service
-            port:
-              number: 80
+    - host: nikhilchavan.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: resume-service
+                port:
+                  number: 80
 ---
